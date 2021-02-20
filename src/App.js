@@ -5,7 +5,7 @@ import Button from './components/Button';
 class App extends Component{
   render(){
   return (
-    <div className="App">
+    <div className = "App">
       <div className = "calc-wrapper">
         <div className = "row">
           <Button>7</Button>
