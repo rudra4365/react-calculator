@@ -47,20 +47,39 @@ class App extends Component{
     this.setState({operator: "minus"});
   };
 
+  divide = () => {
+    this.setState({previousNumber: this.state.input});
+    this.setState({input: ""});
+    this.setState({operator: "upon"});
+  };
+
+  mult = () => {
+    this.setState({previousNumber: this.state.input});
+    this.setState({input: ""});
+    this.setState({operator: "into"});
+  };
+
   addToInput = val => { 
     this.setState({input: this.state.input + val});
   };
 
   answer = () => {
-    this.setState({currentNumber: this.state.input});
-    this.setState({currentNumber: this.state.input});
+    this.state.currentNumber = this.state.input;
     if(this.state.operator === "plus")
     {
-      this.setState({input:  parseInt(this.state.previousNumber) + parseInt(this.state.currentNumber)});
+      this.setState({input:  parseFloat(this.state.previousNumber) + parseFloat(this.state.currentNumber)});
     }
     else if(this.state.operator === "minus")
     {
-      this.setState({input: parseInt(this.state.previousNumber) - parseInt(this.state.currentNumber)});
+      this.setState({input: parseFloat(this.state.previousNumber) - parseFloat(this.state.currentNumber)});
+    }
+    else if(this.state.operator === "upon")
+    {
+      this.setState({input: parseFloat(this.state.previousNumber) / parseFloat(this.state.currentNumber)});
+    }
+    else if(this.state.operator === "into")
+    {
+      this.setState({input: parseFloat(this.state.previousNumber) * parseFloat(this.state.currentNumber)});
     }
   };
 
@@ -75,13 +94,13 @@ class App extends Component{
           <Button handleClick = {this.addToInput}>7</Button>
           <Button handleClick = {this.addToInput}>8</Button>
           <Button handleClick = {this.addToInput}>9</Button>
-          <Button>/</Button>
+          <Button handleClick = {this.divide}>/</Button>
         </div>
         <div className = "row">
           <Button handleClick = {this.addToInput}>4</Button>
           <Button handleClick = {this.addToInput}>5</Button>
           <Button handleClick = {this.addToInput}>6</Button>
-          <Button>*</Button>
+          <Button handleClick = {this.mult}>*</Button>
         </div>
         <div className = "row">
           <Button handleClick = {this.addToInput}>1</Button>
